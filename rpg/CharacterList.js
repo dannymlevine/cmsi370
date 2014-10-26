@@ -7,8 +7,10 @@ $(window).load(function(){
 		    function (characters) {
 		        // Do something with the character list.
 		        characters.forEach(function (character) {
-		        	$("#lol").append("<li><a role=\"menuitem\">"+character.name+"</a></li>")
+		        	$("#lol").append("<li role=presentation><a role=\"menuitem\"data-toggle=\"modal\" data-target=\"#CharacterView\" href=\"#CharacterView\">"+character.name+"</a></li>")
+
 		        });
-		    })
+		    })			
+		})
 	
-})
+
