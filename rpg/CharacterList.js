@@ -72,6 +72,17 @@ $("#submit").click(function(){
 
 
 
+$("#deleteConfirm").click(function(){
+	$.ajax({
+    type: 'DELETE',
+    url: "http://lmu-diabolical.appspot.com/characters/"+$("#CharacterViewID").val(),
+    success: function (data, textStatus, jqXHR) {
+        console.log("Gone baby gone.");
+    }
+});
+})
+
+
  
 
 
