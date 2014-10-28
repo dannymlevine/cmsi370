@@ -38,31 +38,35 @@
         				<form role="form">
  							<div class="form-group">
 								<label for="LoginId">Name</label>
-								<input type="email" class="form-control" id="LoginId" placeholder="Enter Name of New Character">
+								<input type="text" class="form-control" id="characterName" placeholder="Enter Name of New Character">
 							</div>
   							<div class="form-group">
-  								<label for="exampleInputPassword1">Gender</label><div class="dropdown">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-								    Gender
-								    <span class="caret"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" >
-								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Male</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Female</a></li>
+  								<label >Gender</label>
+  								<div>
+  							    </div>
+  								<select class="selectpicker" id="selector">
+								    <option>MALE</option>
+								    <option>FEMALE</option>
+								</select>
+
   							</div>
   							<div class="form-group">
   								<label for="exampleInputPassword1">Class</label>
-  								<input type="password" class="form-control" id="Loginpassword" placeholder="Enter Class of New Character">
+  								<input type="text" class="form-control" id="characterClass" placeholder="Enter Class of New Character">
   							</div>
   							<div class="form-group">
   								<label for="exampleInputPassword1">Level</label>
-  								<input type="password" class="form-control" id="Loginpassword" placeholder="Enter Level of New Character">
+  								<input type="text" class="form-control" id="characterLevel" placeholder="Enter Level of New Character">
+  							</div>
+  							<div class="form-group">
+  								<label for="exampleInputPassword1">Money</label>
+  								<input type="text" class="form-control" id="characterMoney" placeholder="Enter Money of New Character">
   							</div>
   						</form>
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        				<button type="button" class="btn btn-primary">Create</button>
+        				<button type="button" class="btn btn-primary" id="createCharacter" data-dismiss="modal">Create</button>
       				</div>
     			</div>
   			</div>
@@ -80,31 +84,46 @@
     			<div class="modal-content">
       				<div class="modal-header">
         				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        				<h4 class="modal-title">Character Creation</h4>
+        				<h4 class="modal-title">Character Viewer</h4>
       				</div>
       				<div class="modal-body">
         				<form role="form">
+        					<div class="form-group">
+								<label>Character ID</label>
+								<input type="text"class="form-control" id="CharacterViewID" disabled>
+							</div>
  							<div class="form-group">
-								<label for="LoginId">Name</label>
+								<label>Name</label>
+								<input type="text"class="form-control" id="CharacterViewName" disabled>
+									
 							</div>
   							<div class="form-group">
-  								<label for="exampleInputPassword1">Gender</label>
+  								<label>Gender</label>
+  									<select class="selectpicker" id="CharacterViewGender" disabled>
+  									<div>
+  									</div>
+								    <option>MALE</option>
+								    <option>FEMALE</option>
+								</select>
   							</div>
   							<div class="form-group">
-  								<label for="exampleInputPassword1">Class</label>
+  								<label>Class</label>
+  								<input type="text" class="form-control" id="CharacterViewClass" disabled >
   							</div>
   							<div class="form-group">
-  								<label for="exampleInputPassword1">Level</label>
+  								<label>Level</label>
+  								<input type="text" class="form-control" id="CharacterViewLevel" disabled>
   							</div>
   							<div class="form-group">
-  								<label for="exampleInputPassword1">Money</label>
+  								<label>Money</label>
+  								<input type="text" class="form-control" id="CharacterViewMoney" disabled>
   							</div>	
   						</form>
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        				<button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-        				<button type="button" class="btn btn-primary">Create</button>
+        				<button type="button" class="btn btn-danger" id="delete" data-dismiss="modal">Delete</button>
+        				<button type="button" class="btn btn-primary" id="modify" data-toggle="modal" data-target="#ModifyCharacterModal" data-dismiss="modal">Modify</button>
       				</div>
     			</div>
   			</div>
@@ -115,6 +134,56 @@
 </section>
 
 
+<section>
+
+		<div class="modal fade" id="ModifyCharacterModal" role="dialog" aria-hidden="true">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        				<h4 class="modal-title">Character Modify</h4>
+      				</div>
+      				<div class="modal-body">
+        				<form role="form">
+        					<div class="form-group">
+								<label>Character ID</label>
+								<input type="text"class="form-control" id="CharacterModifyID" disabled>
+							</div>
+ 							<div class="form-group">
+								<label>Name</label>
+								<input type="text"class="form-control" id="CharacterModifyName">
+									
+							</div>
+  							<div class="form-group">
+  								<label>Gender</label>
+  									<select class="selectpicker" id="CharacterModifyGender" >
+  									<div>
+  									</div>
+								    <option>MALE</option>
+								    <option>FEMALE</option>
+								</select>
+  							</div>
+  							<div class="form-group">
+  								<label>Class</label>
+  								<input type="text" class="form-control" id="CharacterModifyClass">
+  							</div>
+  							<div class="form-group">
+  								<label>Level</label>
+  								<input type="text" class="form-control" id="CharacterModifyLevel">
+  							</div>
+  							<div class="form-group">
+  								<label>Money</label>
+  								<input type="text" class="form-control" id="CharacterModifyMoney">
+  							</div>	
+  						</form>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        				<button type="button" class="btn btn-primary" data-dismiss="modal" id="submit">Submit Changes</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
 
 
 
@@ -122,10 +191,7 @@
 
 
 
-
-
-
-
+</section>
 
 
 
