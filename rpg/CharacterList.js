@@ -2,7 +2,7 @@
 
 
 $(window).load(function(){
-		var characterArray=[]
+
 
 		$.getJSON(
 		    "http://lmu-diabolical.appspot.com/characters",
@@ -64,8 +64,10 @@ $("#submit").click(function(){
     dataType: "json",
     accept: "application/json",
     success: function (data, textStatus, jqXHR) {
+    	location.reload();
         console.log("Done: no news is good news.");
     }
+
 });
 
 })
@@ -78,11 +80,25 @@ $("#deleteConfirm").click(function(){
     url: "http://lmu-diabolical.appspot.com/characters/"+$("#CharacterViewID").val(),
     success: function (data, textStatus, jqXHR) {
         console.log("Gone baby gone.");
+        location.reload();
     }
 });
 })
 
+$("#Item").click(function(){
+	$.getJSON(
+    "http://lmu-diabolical.appspot.com/items/spawn",
+    {
+        level: 50,
+        slot: "body"
+    },
+    function (item) {
+        console.log(item);
+        $("#itemSlot").append(item.slot)
+        $("#itemName").append(item.name)
+    });
 
+})
  
 
 
@@ -107,6 +123,7 @@ $(function(){
 		        // The new character can be accessed from the Location header.
 		        console.log("You may access the new character at:" +
 		            jqXHR.getResponseHeader("Location"));
+		        location.reload();
 
 		    }
 		})
@@ -118,7 +135,6 @@ $(function(){
 
 })
 	
-
 
 
 
