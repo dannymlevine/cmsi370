@@ -23,11 +23,11 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Home</a></li>
-		        <li><a href="#">About</a></li>
+		        <li class="active"><a id="home" class="has-tooltip" data-toggle="tooltip" data-placement="bottom" title="Click here to the return to homepage" href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+		        <li><a href="#" data-toggle="modal" data-target="#about">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#" data-toggle="modal" data-target="#Success" id="Item">Make Item</a></li>
+		        <li><a href="#" data-toggle="modal" data-target="#Success" id="Item" class="has-tooltip" data-toggle="tooltip" data-placement="bottom" title="Click here to create an item">Make Item</a></li>
 		        <li class="dropdown" id="characterdropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Character Select <span class="caret"></span></a>
 					  <ul class="dropdown-menu" role="menu" id="lol">
@@ -48,7 +48,7 @@
 			<div class="container">	
 			  <h1>Welcome to Danny's RPG!</h1>
 			  <p>Welcome to my RPG! To begin, click <b>character select</b> to choose your character. If you are new to Danny's RPG, click on the <b>new character</b> button below.</p>
-			  <p><a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#NewCharacterModal" data-dismiss="jumbotron">New Character</a></p>
+			  <p><a class="btn btn-primary btn-lg has-tooltip" role="button" data-toggle="modal tooltip" data-placement="top" data-target="#NewCharacterModal" title="Click here to start making a new character">New Character</a></p>
 			</div>
 		</div>
 
@@ -64,10 +64,10 @@
         			<div class="modal-body">
         				<form role="form">
         					<div class="form-group">
-								<p> Item Successfully Created</p>
-								<p> Item Stats</p>
-								<p id="itemName"><strong>Name:</strong></p>
-								<p id="itemSlot"><strong>Slot:</strong></p>
+								<p><strong> Item Successfully Created</strong></p>
+								<p><b>Item Name:</b><input id="itemName" disabled></input></p>
+								<p><b>Item Slot:</b><input id="itemSlot" disabled></input></p>
+								<p><b>Item Level:</b><input id="itemLevel" disabled></input></p>
   							</div>
 							  <div class="modal-footer">
 							    <button type="button" data-dismiss="modal" class="btn btn-success">Success</button>
@@ -281,7 +281,28 @@
 
 </section>
 
+<section>
+	<div class="modal fade" id="about" role="dialog" aria-hidden="true">
+  	    <div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        		<h4 class="modal-title">About</h4>
+	        			<div class="modal-body">
+	        				<form role="form">
+	        					<div class="form-group">
+									<p> This webpage was created to simulate the front end of an RPG.</p>
+	  							</div>
+								  <div class="modal-footer">
+								    <button type="button" data-dismiss="modal" class="btn">Ok</button>
+								  </div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+</section>
 
 
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>

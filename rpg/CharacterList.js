@@ -94,8 +94,9 @@ $("#Item").click(function(){
     },
     function (item) {
         console.log(item);
-        $("#itemSlot").append(item.slot)
-        $("#itemName").append(item.name)
+        $("#itemSlot").val(item.slot)
+        $("#itemName").val(item.name)
+        $("#itemLevel").val(item.level)
     });
 
 })
@@ -137,5 +138,9 @@ $(function(){
 	
 
 
+$(document).on("click","#home",function(){
+	location.reload();
+})
+$(function(){$(".has-tooltip").tooltip();})
 
 
