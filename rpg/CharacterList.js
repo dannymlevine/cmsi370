@@ -1,31 +1,33 @@
 
+// JD: 11
+
+$(window).load(function(){ // JD: 16
 
 
-$(window).load(function(){
-
-
-		$.getJSON(
+		$.getJSON( // JD: 7
 		    "http://lmu-diabolical.appspot.com/characters",
 		    function (characters) {
 		        // Do something with the character list.
 		        characters.forEach(function (character) {
 		        	$("#lol").append("<li role=presentation><a id=\""+character.id+"\" class=\"characterButton\" role=\"menuitem\"data-toggle=\"modal\" data-target=\"#CharacterView\" href=\"#CharacterView\">"+character.name+"</a></li>")
 
-
+// JD: 11
 
 		        });
 		    })			
 		})
 
 
+// JD: 11
 
-
-$(document).on('click' , '.characterButton' , function(){ 
+$(document).on('click' , '.characterButton' , function(){ // JD: 16
     var idAttr = $(this).attr('id');
     console.log( 'using attr  = ' + idAttr);
     $.getJSON(
-    "http://lmu-diabolical.appspot.com/characters/"+idAttr+"",
+        // JD: 5
+    "http://lmu-diabolical.appspot.com/characters/"+idAttr+"", // JD: 17
     function (character) {
+        // JD: 18
     	$("#CharacterViewID").val(idAttr)
     	$("#CharacterViewName").val(character.name)
         $("#CharacterViewGender").val(character.gender)
@@ -36,9 +38,11 @@ $(document).on('click' , '.characterButton' , function(){
 );
 
 
-})
+}) // JD: 5 (oh so many 5's...)
 
-$("#modify").click(function(){
+// JD: 5
+$("#modify").click(function(){ // JD: 16
+    // JD: 18
 	$("#CharacterModifyID").val($("#CharacterViewID").val())
 	$("#CharacterModifyName").val($("#CharacterViewName").val())
     $("#CharacterModifyGender").val($("#CharacterViewGender").val())
@@ -48,10 +52,10 @@ $("#modify").click(function(){
 	
 })
 
-$("#submit").click(function(){
+$("#submit").click(function(){ // JD: 16
 	$.ajax({
     type: 'PUT',
-    url: "http://lmu-diabolical.appspot.com/characters/"+$("#CharacterModifyID").val(),
+    url: "http://lmu-diabolical.appspot.com/characters/"+$("#CharacterModifyID").val(), // JD: 16
     data: JSON.stringify({
         id:$("#CharacterModifyID").val() ,
         name: $("#CharacterModifyName").val(),
@@ -64,7 +68,7 @@ $("#submit").click(function(){
     dataType: "json",
     accept: "application/json",
     success: function (data, textStatus, jqXHR) {
-    	location.reload();
+    	location.reload(); // JD: 4
         console.log("Done: no news is good news.");
     }
 
@@ -72,21 +76,23 @@ $("#submit").click(function(){
 
 })
 
+// JD: 11
 
-
-$("#deleteConfirm").click(function(){
-	$.ajax({
+$("#deleteConfirm").click(function(){ // JD: 16
+	$.ajax({ // JD: 7
+        // JD: 5
     type: 'DELETE',
     url: "http://lmu-diabolical.appspot.com/characters/"+$("#CharacterViewID").val(),
     success: function (data, textStatus, jqXHR) {
         console.log("Gone baby gone.");
-        location.reload();
+        location.reload(); // JD: 4
     }
-});
+}); // JD: 5
 })
 
-$("#Item").click(function(){
-	$.getJSON(
+$("#Item").click(function(){ // JD: 13 (#item), 16
+	$.getJSON( // JD: 7
+        // JD: 5
     "http://lmu-diabolical.appspot.com/items/spawn",
     {
         level: 50,
@@ -102,11 +108,11 @@ $("#Item").click(function(){
 })
  
 
+// JD: 11
 
 
-
-$(function(){
-	$("#createCharacter").click(function(){
+$(function(){ // JD: 19, 16
+	$("#createCharacter").click(function(){ // JD: 16
 		$.ajax({
 		    type: 'POST',
 		    url: "http://lmu-diabolical.appspot.com/characters",
@@ -124,23 +130,23 @@ $(function(){
 		        // The new character can be accessed from the Location header.
 		        console.log("You may access the new character at:" +
 		            jqXHR.getResponseHeader("Location"));
-		        location.reload();
+		        location.reload(); // JD: 4
 
 		    }
 		})
 
-
+// JD: 11
 
 
 	})
 
 })
 	
+// JD: 11
 
-
-$(document).on("click","#home",function(){
+$(document).on("click","#home",function(){ // JD: 16
 	location.reload();
 })
-$(function(){$(".has-tooltip").tooltip();})
+$(function(){$(".has-tooltip").tooltip();}) // JD: 19, 16
 
 
