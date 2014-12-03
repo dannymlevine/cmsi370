@@ -24,6 +24,9 @@ var BoxesTouch = {
     startDraw: function (event){
         $.each(event.changedTouches, function(index,touch){
             console.log(touch);
+            touch.anchorX =touch.pageX 
+            touch.anchorY = touch.pageY
+            console.log("x="+touch.pageX,"y="+touch.pageY)
         });
     },
 
@@ -53,11 +56,14 @@ var BoxesTouch = {
     endDrag: function (event) {
         $.each(event.changedTouches, function (index, touch) {
             if (touch.target.movingBox) {
+                console.log("END",touch)
                 // Change state to "not-moving-anything" by clearing out
                 // touch.target.movingBox.
-                if(touch.target.movingBox.offset({}))
-                $(touch.target.movingBox).remove();
+                if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
+                    $(touch.target.movingBox).remove();
+               }else{
                 touch.target.movingBox = null;
+               }
             }
         });
     },
