@@ -44,6 +44,15 @@ var BoxesTouch = {
                     top: touch.pageY - touch.target.deltaY
                 });
             }
+            if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
+                touch.target.movingBox.addClass("box-deletion-color");
+            }
+            if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
+                touch.target.movingBox.removeClass("box-deletion-color");
+            }
+
+
+
         });
         
         // Don't do any touch scrolling.
