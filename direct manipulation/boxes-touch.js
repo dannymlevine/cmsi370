@@ -21,13 +21,22 @@ var BoxesTouch = {
             });
     },
 
+
+
     startDraw: function (event){
         $.each(event.changedTouches, function(index,touch){
             console.log(touch);
             touch.anchorX =touch.pageX 
             touch.anchorY = touch.pageY
-            console.log("x="+touch.pageX,"y="+touch.pageY)
+            $("#drawing-area").newBox=$("<div></div>")
+            .appendTo("#drawing-area")
+            .addClass("box")
+            .css({width:"10px",height:"10px",left: touch.pageX+"px",top: touch.pageY+"px"})
         });
+        $("#drawing-area").find("div.box").each(function(index, element) {
+                    element.addEventListener("touchstart", BoxesTouch.startMove, false);
+                    element.addEventListener("touchend", BoxesTouch.unhighlight, false);
+                });
     },
 
     /**
@@ -43,13 +52,14 @@ var BoxesTouch = {
                     left: touch.pageX - touch.target.deltaX,
                     top: touch.pageY - touch.target.deltaY
                 });
-            }
-            if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
+                if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
                 touch.target.movingBox.addClass("box-deletion-color");
-            }
-            if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
+                }
+                if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
                 touch.target.movingBox.removeClass("box-deletion-color");
+                }
             }
+            
 
 
 
