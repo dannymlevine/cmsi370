@@ -29,7 +29,7 @@ var BoxesTouch = {
             touch.anchorY = touch.pageY
             this.newBox=$("<div></div>")
                 .appendTo("#drawing-area")
-                .addClass("box newBox")
+                .addClass("box")
                 .width(10+"px")
                 .height(10+"px")
                 .css({left: touch.pageX+"px",top: touch.pageY+"px"})
