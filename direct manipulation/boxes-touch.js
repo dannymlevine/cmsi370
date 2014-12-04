@@ -29,14 +29,20 @@ var BoxesTouch = {
             touch.anchorX =touch.pageX 
             touch.anchorY = touch.pageY
             $("#drawing-area").newBox=$("<div></div>")
-            .appendTo("#drawing-area")
-            .addClass("box")
-            .css({width:"10px",height:"10px",left: touch.pageX+"px",top: touch.pageY+"px"})
-        });
-        $("#drawing-area").find("div.box").each(function(index, element) {
+                .appendTo("#drawing-area")
+                .addClass("box newBox")
+                .width(10+"px")
+                .height(10+"px")
+                .css({left: touch.pageX+"px",top: touch.pageY+"px"})
+                
+            
+
+            $("#drawing-area").find("div.box").each(function (index, element) {
                     element.addEventListener("touchstart", BoxesTouch.startMove, false);
                     element.addEventListener("touchend", BoxesTouch.unhighlight, false);
                 });
+        });
+        
     },
 
     /**
@@ -52,18 +58,22 @@ var BoxesTouch = {
                     left: touch.pageX - touch.target.deltaX,
                     top: touch.pageY - touch.target.deltaY
                 });
-                if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
-                touch.target.movingBox.addClass("box-deletion-color");
-                }
-                if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
-                touch.target.movingBox.removeClass("box-deletion-color");
-                }
             }
-            
-
-
-
-        });
+            else if(touch.target=$("drawing-area")){
+                var changedWidth=Math.abs(touch.pageX - touch.anchorX)+"px";
+                var changedHeight=Math.abs(touch.pageY - touch.anchorY)+"px";
+                var changedLeft=((touch.anchorX < touch.pageX) ? touch.anchorX : touch.pageX)+"px";
+                var changedTop=((touch.anchorY < touch.pageY) ? touch.anchorY : touch.pageY)+"px";
+                $(".newBox").width(changedWidth).height(changedHeight).css({left:changedLeft,top:changedTop});
+            }
+               
+                //if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
+                //touch.target.movingBox.addClass("box-deletion-color");
+                //}
+                //if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
+                //touch.target.movingBox.removeClass("box-deletion-color");
+                //}
+            })
         
         // Don't do any touch scrolling.
         event.preventDefault();
@@ -74,7 +84,10 @@ var BoxesTouch = {
      */
     endDrag: function (event) {
         $.each(event.changedTouches, function (index, touch) {
-            if (touch.target.movingBox) {
+            if(touch.target.newBox){
+                console.log("IM ALIVE",touch.target.newBox)
+            }
+            else if (touch.target.movingBox) {
                 console.log("END",touch)
                 // Change state to "not-moving-anything" by clearing out
                 // touch.target.movingBox.
