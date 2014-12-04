@@ -6,7 +6,6 @@ var BoxesTouch = {
         // Set up any pre-existing box elements for touch behavior.
         jQueryElements
             .addClass("drawing-area")
-            
             // Event handler setup must be low-level because jQuery
             // doesn't relay touch-specific event properties.
             .each(function (index, element) {
@@ -14,16 +13,13 @@ var BoxesTouch = {
                 element.addEventListener("touchmove", BoxesTouch.trackDrag, false);
                 element.addEventListener("touchend", BoxesTouch.endDrag, false);
             })
-
             .find("div.box").each(function (index, element) {
                 element.addEventListener("touchstart", BoxesTouch.startMove, false);
                 element.addEventListener("touchend", BoxesTouch.unhighlight, false);
             });
     },
-
-
     //starts creation process of boxes if there is a touch in empty spot of draw space
-    startDraw: function (event){
+    startDraw: function (event) {
         $.each(event.changedTouches, function(index,touch){
             touch.anchorX =touch.pageX 
             touch.anchorY = touch.pageY
@@ -33,9 +29,6 @@ var BoxesTouch = {
                 .width(10+"px")
                 .height(10+"px")
                 .css({left: touch.pageX+"px",top: touch.pageY+"px"})
-                
-            
-
             $("#drawing-area").find("div.box").each(function (index, element) {
                 element.addEventListener("touchstart", BoxesTouch.startMove, false);
                 element.addEventListener("touchend", BoxesTouch.unhighlight, false);
@@ -53,12 +46,12 @@ var BoxesTouch = {
             if (touch.target.movingBox) {
                 // Reposition the object.
                 touch.target.movingBox.offset({
-                    left: touch.pageX - touch.target.deltaX,
+                    left: touch.pageX - touch.target.deltaX ,
                     top: touch.pageY - touch.target.deltaY
                 });
             }
             //creates the new box with proper dimensions
-            else if(touch.target=$("drawing-area")){
+            else if(touch.target=$("drawing-area")) {
                 var changedWidth=Math.abs(touch.pageX - touch.anchorX)+"px";
                 var changedHeight=Math.abs(touch.pageY - touch.anchorY)+"px";
                 var changedLeft=((touch.anchorX < touch.pageX) ? touch.anchorX : touch.pageX)+"px";
@@ -73,12 +66,10 @@ var BoxesTouch = {
                 if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
                     touch.target.movingBox.removeClass("box-deletion-color");
                 }
-            })
-        
+        })
         // Don't do any touch scrolling.
         event.preventDefault();
     },
-
     /**
      * Concludes a drawing or moving sequence.
      */
@@ -87,21 +78,20 @@ var BoxesTouch = {
             if (touch.target.movingBox) {
                 //deletes box if not in draw area
                 if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
-                    $(touch.target.movingBox).remove();}
-                else{
+                    $(touch.target.movingBox).remove();
+                }
+                else {
                     touch.target.movingBox = null;
                 }
             }
         });
     },
-
     /**
      * Indicates that an element is unhighlighted.
      */
     unhighlight: function () {
         $(this).removeClass("box-highlight");
     },
-
     /**
      * Begins a box move sequence.
      */
