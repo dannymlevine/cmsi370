@@ -22,13 +22,12 @@ var BoxesTouch = {
     },
 
 
-
+    //starts creation process of boxes if there is a touch in empty spot of draw space
     startDraw: function (event){
         $.each(event.changedTouches, function(index,touch){
-            console.log(touch);
             touch.anchorX =touch.pageX 
             touch.anchorY = touch.pageY
-            $("#drawing-area").newBox=$("<div></div>")
+            this.newBox=$("<div></div>")
                 .appendTo("#drawing-area")
                 .addClass("box newBox")
                 .width(10+"px")
@@ -38,11 +37,11 @@ var BoxesTouch = {
             
 
             $("#drawing-area").find("div.box").each(function (index, element) {
-                    element.addEventListener("touchstart", BoxesTouch.startMove, false);
-                    element.addEventListener("touchend", BoxesTouch.unhighlight, false);
+                element.addEventListener("touchstart", BoxesTouch.startMove, false);
+                element.addEventListener("touchend", BoxesTouch.unhighlight, false);
                 });
         });
-        
+        event.stopPropagation();
     },
 
     /**
@@ -50,7 +49,6 @@ var BoxesTouch = {
      */
     trackDrag: function (event) {
         $.each(event.changedTouches, function (index, touch) {
-            console.log(touch);
             // Don't bother if we aren't tracking anything.
             if (touch.target.movingBox) {
                 // Reposition the object.
@@ -59,20 +57,22 @@ var BoxesTouch = {
                     top: touch.pageY - touch.target.deltaY
                 });
             }
+            //creates the new box with proper dimensions
             else if(touch.target=$("drawing-area")){
                 var changedWidth=Math.abs(touch.pageX - touch.anchorX)+"px";
                 var changedHeight=Math.abs(touch.pageY - touch.anchorY)+"px";
                 var changedLeft=((touch.anchorX < touch.pageX) ? touch.anchorX : touch.pageX)+"px";
                 var changedTop=((touch.anchorY < touch.pageY) ? touch.anchorY : touch.pageY)+"px";
-                $(".newBox").width(changedWidth).height(changedHeight).css({left:changedLeft,top:changedTop});
+                this.newBox.width(changedWidth).height(changedHeight).css({left:changedLeft,top:changedTop});
             }
-               
-                //if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
-                //touch.target.movingBox.addClass("box-deletion-color");
-                //}
-                //if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
-                //touch.target.movingBox.removeClass("box-deletion-color");
-                //}
+               //add deletion border to box if it is outside for draw area
+                if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
+                    touch.target.movingBox.addClass("box-deletion-color");
+                }
+                //removes deletion border from box if it re-enters draw area
+                if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
+                    touch.target.movingBox.removeClass("box-deletion-color");
+                }
             })
         
         // Don't do any touch scrolling.
@@ -84,18 +84,13 @@ var BoxesTouch = {
      */
     endDrag: function (event) {
         $.each(event.changedTouches, function (index, touch) {
-            if(touch.target.newBox){
-                console.log("IM ALIVE",touch.target.newBox)
-            }
-            else if (touch.target.movingBox) {
-                console.log("END",touch)
-                // Change state to "not-moving-anything" by clearing out
-                // touch.target.movingBox.
+            if (touch.target.movingBox) {
+                //deletes box if not in draw area
                 if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
-                    $(touch.target.movingBox).remove();
-               }else{
-                touch.target.movingBox = null;
-               }
+                    $(touch.target.movingBox).remove();}
+                else{
+                    touch.target.movingBox = null;
+                }
             }
         });
     },
