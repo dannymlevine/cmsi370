@@ -2,3 +2,8 @@ html,body { /* JD: 16 */
     background: url(escheresque_ste.png) repeat;
 }
 
+#icon{
+	width:36px;
+	height: 36px;
+}
+
