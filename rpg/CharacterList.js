@@ -29,7 +29,7 @@ $("#modify").click(function() {
 $("#submit").click(function() {
   $.ajax({
     type: 'PUT',
-    url: "http://lmu-diabolical.appspot.com/characters/"+$("#character-modify-id").val() ,
+    url: "http://lmu-diabolical.appspot.com/characters/"+$("#character-modify-id").val(),
     data: JSON.stringify({
       name: $("#character-modify-name").val() ,
       classType: $("#character-modify-class").val() ,

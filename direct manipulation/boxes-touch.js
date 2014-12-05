@@ -35,6 +35,7 @@ var BoxesTouch = {
                 });
         });
         event.stopPropagation();
+        event.preventDefault();
     },
 
     /**
