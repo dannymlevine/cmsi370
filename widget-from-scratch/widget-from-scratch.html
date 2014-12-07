@@ -3,19 +3,19 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Widget from Scratch</title>
+    <title>Widget from scratch</title>
     <link rel="stylesheet" type="text/css" href="widget-from-scratch.css"/>
-
   </head>
   <body>
-  	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <h1>This is my Slider</h1>
+    <p>This is the widget i created to make putting input to my rpg have more of a direct manipulation feel.</p>
+    <p>As the slider moves to the right the value increases and as the slider moves to the left the value decreases. This widget will act as the gender selector in my rpg.</p><p> If the value of the bar is past 50 the user selects female and if the bar is less than 50 the user selects male</p>
+    <div id="slider">
+      <input class="bar" type="range" id="rangeinput" value="50" onchange="newValue.value=value"/>
+	  <span><input id="newValue"></span>
+	  <input type="text" class="form-control" id="gender" />
+	</div>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="widget-from-scratch.js"></script>
-    <div id="circle">
-      <div id="knob">
-      </div>
-
-    </div>
-
   </body>
-
 </html>

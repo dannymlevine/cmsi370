@@ -1,25 +1,17 @@
-/*#circle {
-    width: 50px;
-    height: 50px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px; 
-}*/
-
-
-#circle {
-    border:thin solid black;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+#slider {
+    width: auto;
+    position: relative;
+    margin: 100px auto;
 }
 
-#knob{
-	position: absolute;
-	border: thin solid red;
-	border-radius: 50%;
-	height:10px;
-	width:10px;
-    top:10%;
-    left:2%;    
-}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    background-color: black;
+    height: 5px;
+    border-radius: 6px;
+} 
+
+
+
+
