@@ -12,8 +12,8 @@
     <p>As the slider moves to the right the value increases and as the slider moves to the left the value decreases. This widget will act as the gender selector in my rpg.</p><p> If the value of the bar is past 50 the user selects female and if the bar is less than 50 the user selects male</p>
     <div id="slider">
       <input class="bar" type="range" id="rangeinput" value="50" onchange="newValue.value=value"/>
-	  <span><input id="newValue"></span>
-	  <input type="text" class="form-control" id="gender" />
+	  <span><output id="newValue" disabled></span>
+	  <input type="text" class="form-control" id="gender" disabled/>
 	</div>
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="widget-from-scratch.js"></script>
