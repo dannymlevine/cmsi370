@@ -1,4 +1,4 @@
-$(function(){
+(function($){
 
 	console.log($("#rangeinput").attr("onchange"))
 
@@ -12,4 +12,4 @@ $("#rangeinput").on("change",function(){
 		$("#gender").val("Select Gender")
 	}
 })
-})
+}(jQuery))
