@@ -29,17 +29,17 @@ $("#modify").click(function() {
 $("#submit").click(function() {
   $.ajax({
     type: 'PUT',
-    url: "http://lmu-diabolical.appspot.com/characters/"+$("#character-modify-id").val(),
+    url: "http://lmu-diabolical.appspot.com/characters/" + $("#character-modify-id").val(),
     data: JSON.stringify({
-      name: $("#character-modify-name").val() ,
-      classType: $("#character-modify-class").val() ,
-      gender: $("#character-modify-gender").val() ,
-      level: $("#character-modify-level").val() ,
+      id: $("#character-modify-id").val(),
+      name: $("#character-modify-name").val(),
+      classType: $("#character-modify-class").val(),
+      gender: $("#character-modify-gender").val(),
+      level: $("#character-modify-level").val(),
       money: $("#character-modify-money").val()
-    }) ,
-    contentType: "application/json" ,
-    dataType: "json" ,
-    accept: "application/json" ,
+    }), contentType: "application/json",
+    dataType: "json",
+    accept: "application/json",
     success: function (data, textStatus, jqXHR) {
       location.reload();
       console.log("Done: no news is good news.");
@@ -47,15 +47,15 @@ $("#submit").click(function() {
 })
 $("#delete-confirm").click(function() {
   $.ajax({
-    type: 'DELETE' ,
-    url: "http://lmu-diabolical.appspot.com/characters/"+$("#character-view-id").val() ,
+    type: 'DELETE',
+    url: "http://lmu-diabolical.appspot.com/characters/"+$("#character-view-id").val(),
     success: function (data, textStatus, jqXHR) {
       console.log("Gone baby gone.");
       location.reload();
     }});
 })
 $("#item").click(function() {
-  $.getJSON("http://lmu-diabolical.appspot.com/items/spawn" ,
+  $.getJSON("http://lmu-diabolical.appspot.com/items/spawn",
     {
       level: 50,
       slot: "body"
@@ -69,13 +69,13 @@ $("#item").click(function() {
 })
 $("#create-character").click(function() {
   $.ajax({
-	type: 'POST' ,
-	url: "http://lmu-diabolical.appspot.com/characters" ,
+	type: 'POST',
+	url: "http://lmu-diabolical.appspot.com/characters",
 	data: JSON.stringify({
-	  name: $("#character-name").val() ,
-	  classType: $("#character-class").val() ,
-	  gender: $("#selector").val() ,
-	  level: $("#character-level").val() ,
+	  name: $("#character-name").val(),
+	  classType: $("#character-class").val(),
+	  gender: $("#selector").val(),
+	  level: $("#character-level").val(),
 	  money: $("#character-money").val()
 	}) ,
 	contentType: "application/json" ,
