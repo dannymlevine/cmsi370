@@ -5,6 +5,7 @@
     <title>My RPG</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="RPG.css">
+    <link rel="stylesheet" type="text/css" href="widget-from-scratch.css">
   </head>
   <body>
     <section> 
@@ -77,10 +78,9 @@
 							  </div>
   						  <div class="form-group">
   							  <label >Gender</label>
-  								<select class="selectpicker" id="selector">
-								    <option>MALE</option>
-								    <option>FEMALE</option>
-								  </select>
+                    <input class="bar" type="range" id="rangeinput" value="50" onchange="newValue.value=value"/>
+                    <span><output id="newValue" disabled>50</output></span>
+                    <input type="text" class="form-control" value="Select a Gender" id="character-gender" disabled/>
   							</div>
   							<div class="form-group">
   							  <label for="exampleInputPassword1">Class</label>
@@ -247,5 +247,6 @@
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="CharacterList.js"></script>
+    <script src="widget-from-scratch.js"></script>
   </body>
 </html>

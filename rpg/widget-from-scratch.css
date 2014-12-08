@@ -1,0 +1,17 @@
+#slider {
+    width: auto;
+    position: relative;
+    margin: 100px auto;
+}
+
+
+input[type="range"] {
+    -webkit-appearance: none;
+    background-color: black;
+    height: 5px;
+    border-radius: 6px;
+} 
+
+
+
+
