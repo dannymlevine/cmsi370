@@ -68,24 +68,27 @@ $("#item").click(function() {
     });
 })
 $("#create-character").click(function() {
+  character = {
+    name: $("#character-name").val(),
+    classType: $("#character-class").val(),
+    gender: $("#character-gender").val(),
+    level: $("#character-level").val(),
+    money: $("#character-money").val()
+  }
+  console.log(JSON.stringify(character));
+
   $.ajax({
 	type: 'POST',
 	url: "http://lmu-diabolical.appspot.com/characters",
-	data: JSON.stringify({
-	  name: $("#character-name").val(),
-	  classType: $("#character-class").val(),
-	  gender: $("#character-gender").val(),
-	  level: $("#character-level").val(),
-	  money: $("#character-money").val()
-	}) ,
-	contentType: "application/json" ,
-	dataType: "json" ,
-	accept: "application/json" ,
+    contentType: "application/json" ,
+    dataType: "json",
+    accept: "application/json",
+	data: JSON.stringify(character),
 	complete: function (jqXHR, textStatus) {
 	  // The new character can be accessed from the Location header.
-	  console.log("You may access the new character at:" +
-	  jqXHR.getResponseHeader("Location"));
-	  //location.reload();
+	   console.log("You may access the new character at:" +
+	   jqXHR.getResponseHeader("Location"));
+	   location.reload();
 	}
   })
 })
@@ -93,6 +96,8 @@ $(document).on("click","#home",function() {
 	location.reload();
 })
 $(".has-tooltip").tooltip()
+
+
 
 
 
