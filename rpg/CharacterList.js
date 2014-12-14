@@ -1,9 +1,9 @@
 $(window).load( function() { 
   $.getJSON("http://lmu-diabolical.appspot.com/characters",
     function (characters) {
-	  characters.forEach(function (character) {
-	    $("#lol").append("<li role=presentation><a id=\""+character.id+"\" class=\"character-button\" role=\"menuitem\"data-toggle=\"modal\" data-target=\"#character-view\" href=\"#character-view\">"+character.name+"</a></li>")});
-	})			
+      characters.forEach(function (character) {
+        $("#lol").append("<li role=presentation><a id=\""+character.id+"\" class=\"character-button\" role=\"menuitem\"data-toggle=\"modal\" data-target=\"#character-view\" href=\"#character-view\">"+character.name+"</a></li>")});
+    })
 })
 $(document).on('click' , '.character-button' , function() {
   var idAttr = $(this).attr('id');
@@ -78,22 +78,22 @@ $("#create-character").click(function() {
   console.log(JSON.stringify(character));
 
   $.ajax({
-	type: 'POST',
-	url: "http://lmu-diabolical.appspot.com/characters",
+    type: 'POST',
+    url: "http://lmu-diabolical.appspot.com/characters",
     contentType: "application/json" ,
     dataType: "json",
     accept: "application/json",
-	data: JSON.stringify(character),
-	complete: function (jqXHR, textStatus) {
-	  // The new character can be accessed from the Location header.
-	   console.log("You may access the new character at:" +
-	   jqXHR.getResponseHeader("Location"));
-	   location.reload();
-	}
+    data: JSON.stringify(character),
+    complete: function (jqXHR, textStatus) {
+      // The new character can be accessed from the Location header.
+       console.log("You may access the new character at:" +
+       jqXHR.getResponseHeader("Location"));
+       location.reload();
+    }
   })
 })
 $(document).on("click","#home",function() {
-	location.reload();
+    location.reload();
 })
 $(".has-tooltip").tooltip()
 

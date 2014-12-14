@@ -1,4 +1,4 @@
-(function( $ ) {
+var widget=(function( $ ) {
 $( "#rangeinput" ).on( "change",function() {
   if($( "#newValue" ).val()>50) {
 	  $( "#character-gender" ).val( "female" )
@@ -7,6 +7,6 @@ $( "#rangeinput" ).on( "change",function() {
   }else {
 	  $( "#character-gender" ).val( "Select Gender" )
 	}
-    $("#character-gender").attr("value",$("#character-gender").val())
+  $("#character-gender").attr("value",$("#character-gender").val())
 })
 }( jQuery ))

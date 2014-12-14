@@ -77,10 +77,10 @@
                   <input type="text" class="form-control" id="character-name" placeholder="Enter Name of New Character">
                 </div>
                 <div class="form-group">
-                  <label >Gender</label>
-                    <input class="bar" type="range" id="rangeinput" value="50" onchange="newValue.value=value"/>
-                    <span><output id="newValue" disabled>50</output></span>
-                    <input type="text" class="form-control" placeholder="Select a Gender" id="character-gender" disabled/>
+                  <select class="selectpicker" id="character-view-gender" disabled>
+                    <option>MALE</option>
+                    <option>FEMALE</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Class</label>
