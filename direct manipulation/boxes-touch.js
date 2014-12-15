@@ -21,18 +21,18 @@ var BoxesTouch = {
     //starts creation process of boxes if there is a touch in empty spot of draw space
     startDraw: function (event) {
         $.each(event.changedTouches, function(index,touch){
-            touch.anchorX =touch.pageX 
+            touch.anchorX =touch.pageX // JD: 2
             touch.anchorY = touch.pageY
-            this.newBox=$("<div></div>")
+            this.newBox=$("<div></div>") // JD: 3
                 .appendTo("#drawing-area")
                 .addClass("box")
-                .width(10+"px")
-                .height(10+"px")
-                .css({left: touch.pageX+"px",top: touch.pageY+"px"})
+                .width(10+"px") // JD: 3, 8
+                .height(10+"px") // JD: 3, 8
+                .css({left: touch.pageX+"px",top: touch.pageY+"px"}) // JD: 3
             $("#drawing-area").find("div.box").each(function (index, element) {
                 element.addEventListener("touchstart", BoxesTouch.startMove, false);
                 element.addEventListener("touchend", BoxesTouch.unhighlight, false);
-                });
+                }); // JD: 4
         });
         event.stopPropagation();
         event.preventDefault();
@@ -52,25 +52,28 @@ var BoxesTouch = {
                 });
             }
             //creates the new box with proper dimensions
-            else if(touch.target=$("drawing-area")) {
-                var changedWidth=Math.abs(touch.pageX - touch.anchorX)+"px";
-                var changedHeight=Math.abs(touch.pageY - touch.anchorY)+"px";
-                var changedLeft=((touch.anchorX < touch.pageX) ? touch.anchorX : touch.pageX)+"px";
-                var changedTop=((touch.anchorY < touch.pageY) ? touch.anchorY : touch.pageY)+"px";
+            else if(touch.target=$("drawing-area")) { // JD: 5, 6, 3, 2, 7
+                var changedWidth=Math.abs(touch.pageX - touch.anchorX)+"px"; // JD: 3
+                var changedHeight=Math.abs(touch.pageY - touch.anchorY)+"px"; // JD: 3
+                var changedLeft=((touch.anchorX < touch.pageX) ? touch.anchorX : touch.pageX)+"px"; // JD: 3
+                var changedTop=((touch.anchorY < touch.pageY) ? touch.anchorY : touch.pageY)+"px"; // JD: 3
+                // JD: 7
                 this.newBox.width(changedWidth).height(changedHeight).css({left:changedLeft,top:changedTop});
             }
                //add deletion border to box if it is outside for draw area
+            // JD: 3, 4, 2
                 if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
                     touch.target.movingBox.addClass("box-deletion-color");
                 }
                 //removes deletion border from box if it re-enters draw area
+            // JD: 3, 4, 2
                 if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
                     touch.target.movingBox.removeClass("box-deletion-color");
                 }
         })
         // Don't do any touch scrolling.
         event.preventDefault();
-    },
+    }, // JD: 6
     /**
      * Concludes a drawing or moving sequence.
      */
@@ -78,21 +81,22 @@ var BoxesTouch = {
         $.each(event.changedTouches, function (index, touch) {
             if (touch.target.movingBox) {
                 //deletes box if not in draw area
+                // JD: 2, 3
                 if(touch.pageX>=$("#drawing-area").width()|| touch.pageY>=$("#drawing-area").height()){
                     $(touch.target.movingBox).remove();
                 }
-                else {
+                else { // JD: 6
                     touch.target.movingBox = null;
                 }
             }
         });
-    },
+    }, // JD: 6
     /**
      * Indicates that an element is unhighlighted.
      */
     unhighlight: function () {
         $(this).removeClass("box-highlight");
-    },
+    }, // JD: 6
     /**
      * Begins a box move sequence.
      */

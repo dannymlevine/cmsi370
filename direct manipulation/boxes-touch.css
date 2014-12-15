@@ -18,5 +18,5 @@
 }
 
 .box-deletion-color {
-	border: solid red;
+	border: solid red; /* JD: 1 */
 }
