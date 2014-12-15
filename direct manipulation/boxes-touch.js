@@ -68,7 +68,7 @@ var BoxesTouch = {
         })
         // Don't do any touch scrolling.
         event.preventDefault();
-    }, // JD: 6
+    },
     /**
      * Concludes a drawing or moving sequence.
      */
@@ -82,13 +82,13 @@ var BoxesTouch = {
                 else { touch.target.movingBox = null;}
             }
         });
-    },
+    }, 
     /**
      * Indicates that an element is unhighlighted.
      */
     unhighlight: function () {
         $(this).removeClass("box-highlight");
-    },
+    }, 
     /**
      * Begins a box move sequence.
      */
@@ -107,10 +107,8 @@ var BoxesTouch = {
             touch.target.deltaX = touch.pageX - startOffset.left;
             touch.target.deltaY = touch.pageY - startOffset.top;
         });
-
         // Eat up the event so that the drawing area does not
         // deal with it.
         event.stopPropagation();
     }
-
 };
