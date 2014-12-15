@@ -62,7 +62,7 @@ var BoxesTouch = {
                 touch.target.movingBox.addClass("box-deletion-color");
             }
                 //removes deletion border from box if it re-enters draw area
-            if(touch.pageX<$("#drawing-area").width()&& touch.pageY<$("#drawing-area").height()){
+            if(touch.pageX < $("#drawing-area").width() && touch.pageY < $("#drawing-area").height()){
                 touch.target.movingBox.removeClass("box-deletion-color");
             }
         })
