@@ -58,6 +58,7 @@ var BoxesTouch = {
                 this.newBox.width(changedWidth).height(changedHeight).css({left: changedLeft, top: changedTop});
             }
                //add deletion border to box if it is outside for draw area
+            // JD: 10
             if(touch.pageX >= $("#drawing-area").width() || touch.pageY >= $("#drawing-area").height()) {
                 touch.target.movingBox.addClass("box-deletion-color");
             }
